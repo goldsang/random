@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 주제어 및 제시어 선택기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        #container {
+            background: white;
+            padding: 20px;
+            border: 2px solid #333;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            color: #333;
+        }
+        h2, h3 {
+            margin: 10px 0;
+        }
+        #main-word {
+            color: #d9534f;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #sub-word {
+            color: #5bc0de;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>랜덤 주제어 & 제시어 선택기</h1>
+    <div id="container">
+        <h2>주제어: <span id="main-word">???</span></h2>
+        <h3>제시어: <span id="sub-word">???</span></h3>
+        <button onclick="generateWords()">새로운 단어 생성</button>
+    </div>
+
+    <script>
+        // 주제어와 해당 제시어들
+        const wordData = {
+            "탈것": ["자동차", "비행기", "자전거", "기차", "오토바이", "버스", "트럭"],
+            "과일": ["사과", "바나나", "수박", "포도", "딸기", "귤", "체리"],
+            "동물": ["강아지", "고양이", "호랑이", "코끼리", "토끼", "기린", "펭귄"],
+            "음식": ["김치", "떡볶이", "짜장면", "피자", "햄버거", "불고기", "라면"],
+            "자연": ["강", "산", "바다", "숲", "하늘", "꽃", "폭포"],
+            "도구": ["망치", "드라이버", "가위", "붓", "칼", "렌치", "도끼"],
+            "감정": ["기쁨", "슬픔", "화남", "놀람", "사랑", "두려움", "부끄러움"],
+            "직업": ["의사", "경찰", "소방관", "선생님", "요리사", "배우", "운동선수"]
+        };
+
+        function generateWords() {
+            // 주제어 리스트에서 랜덤 선택
+            const mainWords = Object.keys(wordData);
+            const randomMain = mainWords[Math.floor(Math.random() * mainWords.length)];
+
+            // 선택된 주제어에 해당하는 제시어 리스트에서 랜덤 선택
+            const subWords = wordData[randomMain];
+            const randomSub = subWords[Math.floor(Math.random() * subWords.length)];
+
+            // 화면에 표시
+            document.getElementById("main-word").textContent = randomMain;
+            document.getElementById("sub-word").textContent = randomSub;
+        }
+    </script>
+
+</body>
+</html>
